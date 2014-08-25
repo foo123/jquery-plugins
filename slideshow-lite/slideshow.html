@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="../jquery/jquery.js"></script>
+<script type="text/javascript" src="jquery.slideshow.min.js"></script>
+<link href="slideshow.css" rel="stylesheet" type="text/css" />
+<title>jQuery Slideshow Plugin</title>
+<script type="text/javascript">
+(function($){
+    $(document).ready(function(){
+        $("#slideshow").slideshow({
+            pauseSeconds: 5,
+            height: 438,
+            width:700,
+            caption: true,
+            fx:"fade",
+            pagination: "pages" /*,
+            controlsText:{prev:"Previous", next:"Next",first:"First",last:"Last",play:"Play",pause:"Pause"}*/
+        });
+    });
+})(jQuery);
+</script>
+</head>
+<body bgcolor="#121212">
+<div style="color:#aaa;margin:50px 10px 50px 0;"><h1>Slideshow jQuery Plugin</h1></div>
+<br /><br /><br />
+<div id="slideshow">
+<img src="../img/d7.jpg" alt="demo1" />
+<img src="../img/d2.jpg" alt="demo2" />
+<img src="../img/d3.jpg" alt="demo3" />
+<img src="../img/d4.jpg" alt="demo4" />
+<img src="../img/d8.jpg" alt="demo5" />
+<img src="../img/d9.jpg" alt="demo6" />
+</div>
+</body>
+</html>

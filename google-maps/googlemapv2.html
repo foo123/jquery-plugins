@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jquery Googlemaps Plugin</title>
+<script type="text/javascript" src="../jquery/jquery.js"></script>
+<script type="text/javascript" src="jquery.googlemapv2.js"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2.241&amp;sensor=false&amp;key=ABQIAAAAiDWdiRJSa_nM_mKK5LH4cxSNT55TSGQ6l46ubmL1MflmIivHuBSbTkOnSWM3ER6oRWdMtpylBA6I6Q" type="text/javascript"></script>
+<style type="text/css">
+.map
+{
+width:500px;
+height:500px;
+margin:0;
+padding:0;
+}
+</style>
+</head>
+<body>
+<div class="map" id="map1"></div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="map" id="map2"></div>
+<script type="text/javascript">
+(function($){
+    $(document).ready(function(){
+        $(".map").googlemapv2({
+                aData:      [
+                                {lat:35.000, lng:22.00, title:"Foo City", info:"<img src='foocity.jpg' />Foo city 1"},
+                                {lat:35.5455, lng:22.345353, title:"Foo City2", info:"<div><a href='http://foocity2.com'><img src='foocity2.jpg' />Foo city 2</a></div>"}
+                            ],
+                center:     {lat:35.5455, lng:22.345353, zoom: 6}
+        });
+    });
+})(jQuery);
+</script>
+</body>
+</html>

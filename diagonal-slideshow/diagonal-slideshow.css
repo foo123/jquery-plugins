@@ -1,0 +1,31 @@
+.diag-container
+{
+padding:0;
+}
+ul.diag-list {
+list-style-type:none;
+position:relative;
+}
+ul.diag-list li {
+border: 1px solid #aaa;
+overflow: hidden;
+position: absolute;
+-moz-transform: rotate(-45deg);  
+-o-transform: rotate(-45deg);  
+-webkit-transform: rotate(-45deg);  
+-ms-transform: rotate(0deg);  
+transform: rotate(-45deg);  
+-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, 			M22=0.70710678,sizingMethod='auto expand')";
+filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678,sizingMethod='auto expand');		
+list-style-type:none;
+}
+
+ul.diag-list li .diag-inside{
+position: absolute;
+cursor: pointer;
+-moz-transform: rotate(45deg);  
+-o-transform: rotate(45deg);  
+-webkit-transform: rotate(45deg);  
+-ms-transform: rotate(45deg);  
+transform: rotate(45deg);	
+}

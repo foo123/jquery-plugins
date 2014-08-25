@@ -1,0 +1,183 @@
+.slideshowlite {
+position:relative;
+width:700px;
+height:438px;
+margin: 0px auto;
+background:transparent;
+padding:0;
+z-index:2;
+}
+
+.slideshowlite  .images a {
+position:absolute;
+}
+
+.slideshowlite .images
+{
+position: relative;
+display:block;
+margin:0 auto;
+}
+
+.slideshowlite .images img 
+{
+border: none;
+z-index:3;
+}
+
+/* pagination control*/
+.slideshowlite .controls
+{
+position: absolute;
+top:10px;
+left:10px;
+display:block;
+z-index:100;
+}
+
+.slideshowlite .caption 
+{
+position: absolute;
+bottom:10px;
+left:10px;
+display:block;
+z-index:100;
+padding:10px;
+color:#fff;
+background:rgba(34, 34, 34, .7);
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#46222222', endColorstr='#46222222');
+font:normal 12px helvetica,sans-serif;
+}
+
+.slideshowlite .caption span 
+{
+margin:0;
+padding:0;
+position:relative;
+}
+
+/* pagination has anchors with bullet class */
+.slideshowlite .controls .bullet
+{
+position:relative;
+margin:3px;
+padding:3px;
+color:#222;
+text-decoration:none;
+background-color:#fff;
+border:1px solid #000;
+display:inline-block;
+}
+
+.slideshowlite .controls .bullet:hover
+{
+color:#fff;
+background-color:#0000ff;
+}
+
+.slideshowlite .controls .current
+{
+background-color:#ff0000;
+color:#fff;
+border:2px solid #fff;
+}
+
+/* play/pause controls has anchors with first, last, play pause, etc  class */
+/* ***note:*** if u want to use text instead of images for the controls, 
+just set the controlsText parameter and 
+remove the background:url(..) image from the following classes */
+.slideshowlite .controls .prev
+{
+position:relative;
+width:30px;
+height:30px;
+display:inline-block;
+margin:3px;
+background:url('prev.png');
+}
+/* IE 6 no pngs*/
+* html .slideshowlite .controls .prev
+{
+background:url('prev.gif');
+}
+
+.slideshowlite .controls .first
+{
+position:relative;
+width:30px;
+height:30px;
+display:inline-block;
+margin:3px;
+background:url('first.png');
+}
+/* IE 6 no pngs*/
+* html .slideshowlite .controls .first
+{
+background:url('first.gif');
+}
+
+.slideshowlite .controls .last
+{
+position:relative;
+width:30px;
+height:30px;
+display:inline-block;
+margin:3px;
+background:url('last.png');
+}
+/* IE 6 no pngs*/
+* html .slideshowlite .controls .last
+{
+background:url('last.gif');
+}
+
+.slideshowlite .controls .next
+{
+position:relative;
+width:30px;
+height:30px;
+display:inline-block;
+margin:3px;
+background:url('next.png');
+}
+
+/* IE 6 no pngs*/
+* html .slideshowlite .controls .next
+{
+background:url('next.gif');
+}
+
+.slideshowlite .controls .play
+{
+position:relative;
+width:30px;
+height:30px;
+display:inline-block;
+margin:3px;
+background-image:url('play-pause.png');
+background-position: 0px 0px;
+overflow:hidden;
+}
+
+/* IE 6 no pngs*/
+* html .slideshowlite .controls .play
+{
+background-image:url('play-pause.gif');
+}
+
+.slideshowlite .controls .pause
+{
+position:relative;
+width:30px;
+height:30px;
+display:inline-block;
+margin:3px;
+background-image:url('play-pause.png');
+overflow:hidden;
+background-position:0px -30px;
+}
+/* IE 6 no pngs*/
+* html .slideshowlite .controls .pause
+{
+background-image:url('play-pause.gif');
+}
