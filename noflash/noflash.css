@@ -1,119 +1,107 @@
 .noflash-preloader
 {
-width:43px;
-height:11px;
-position:relative;
-margin:40% auto 0 auto;
-background-image:url('ajax-loader.gif');
+    width: 43px;
+    height: 11px;
+    position: relative;
+    margin: 40% auto 0 auto;
+    background-image: url('ajax-loader.gif');
 }
-
 .noflash-controls
 {
-position:absolute;
-top:0px;
-left:0px;
-width:100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
 }
-
 .noflash-controls .bullets
 {
-position:absolute;
-left:0px;
-top:0px;
-width:50%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 50%;
 }
-
 .noflash-controls .bullet
 {
-width:10px;
-height:10px;
-margin:3px;
-background-color:#fff;
-border:1px solid #222;
-display:inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 3px;
+    border: 1px solid #222;
+    border-radius: 50%;
+    background-color: #fff;
+    display: inline-block;
 }
-
 .noflash-controls .bullet:hover
 {
-background-color:#0000ff;
+    background-image: radial-gradient(circle, rgba(0,133,211,1) 0%, rgba(0,133,211,0.1) 100%);
 }
-
 .noflash-controls .active
 {
-border:2px solid #fff;
-background-color:#ff0000;
+    border: 2px solid #fff;
+    background-image: radial-gradient(circle, rgba(0,133,211,1) 0%, rgba(0,133,211,0.1) 100%);
 }
-
 .noflash-controls .controls
 {
-position:absolute;
-right:0px;
-top:0px;
-width:30%;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 120px;
 }
-
 .noflash-controls .prev
 {
-width:30px;
-height:30px;
-display:inline-block;
-margin:5px;
-background:url('prev.png');
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin: 5px;
+    background: url('prev.png');
 }
 /* IE 6 no pngs*/
 * html .noflash-controls .prev
 {
-background:url('prev.gif');
+    background:url('prev.gif');
 }
-
 .noflash-controls .next
 {
-width:30px;
-height:30px;
-display:inline-block;
-margin:5px;
-background:url('next.png');
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin: 5px;
+    background: url('next.png');
 }
-
 /* IE 6 no pngs*/
 * html .noflash-controls .next
 {
-background:url('next.gif');
+    background: url('next.gif');
 }
-
 .noflash-controls .play-pause
 {
-width:30px;
-height:30px;
-display:inline-block;
-margin:5px;
-background-image:url('play-pause.png');
-background-position: 0px 0px;
-overflow:hidden;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin: 5px;
+    background-image: url('play-pause.png');
+    background-position: 0px 0px;
+    overflow: hidden;
 }
-
 /* IE 6 no pngs*/
 * html .noflash-controls .play-pause
 {
-background-image:url('play-pause.gif');
+    background-image: url('play-pause.gif');
 }
-
 .noflash-controls .paused
 {
-background-position:0px -30px;
+    background-position: 0px -30px;
 }
-
 .noflash-caption
 {
-text-align:left;
-background:rgba(34, 34, 34, .7);
-color:#fff;
-position:absolute;
-bottom:0px;
-left:0px;
-width:100%;
-padding:20px;
-font-size:12px;
-font-family:helvetica,sans-serif;
-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#46222222', endColorstr='#46222222');
+    text-align: left;
+    background: rgba(34, 34, 34, .7);
+    color: #fefefe;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 20px;
+    font-size: 12px;
+    font-family: helvetica,sans-serif;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#46222222', endColorstr='#46222222');
 }

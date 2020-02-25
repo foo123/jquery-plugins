@@ -6,7 +6,7 @@ jQuery Plugins
 __Live Examples__
 
 * [Google Maps Plugin](https://foo123.github.io/examples/jquery-google-maps)
-* [NoFlash Slideshow Plugin](https://foo123.github.io/examples/noflash)
+* [NoFlash Responsive Slideshow Plugin](https://foo123.github.io/examples/noflash)
 * [Diagonal Slideshow Plugin](https://foo123.github.io/examples/diagonal-slideshow)
 
 <!--
