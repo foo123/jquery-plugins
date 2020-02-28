@@ -1,3 +1,8 @@
+/**
+*    NoFlash Responsive Slideshow jQuery Plugin
+*    version 2.0.0
+*    https://github.com/foo123/jquery-plugins
+**/
 /*
 Documentation
 
@@ -885,13 +890,13 @@ function NoFlash( el, options )
             ind[i] = i;
             if ( self.options.controls )
             {
-                var anc = $("<a class='bullet' href='javascript:void(0)' rel='"+i+"'></a>");
+                var anc = $("<a class='bullet' href='javascript:void(0)' rel='"+i+"' title=\""+(i+1)+"\"></a>");
                 controls.find(".bullets").append(anc);
             }
         }
         if ( self.options.controls )
         {
-            controls.find(".controls").append("<a class='prev' href='javascript:void(0)'></a><a class='play-pause' href='javascript:void(0)'></a><a class='next' href='javascript:void(0)'></a>");
+            controls.find(".controls").append("<a class='prev' href='javascript:void(0)' title=\"Previous\"></a><a class='play-pause' href='javascript:void(0)' title=\"Play/Pause\"></a><a class='next' href='javascript:void(0)' title=\"Next\"></a>");
             controls.find(".bullet").click(function( ) {
                 if ( paused ) return;
                 if ( !mutex ) self.doTransition(String(parseInt($(this).attr("rel"), 10)));
@@ -943,13 +948,13 @@ function NoFlash( el, options )
     };
 
     self.init = function init( ) {
-        W = self.el.width(); H = stdMath.ceil(W/self.options.aspectRatio);
+        W = stdMath.round(self.el.width()); H = stdMath.round(W/self.options.aspectRatio);
         holder = $("<div class=\"noflash-holder\"></div>");
         holder.css({margin:"0px",padding:"0px",border:'0',overflow:"hidden",position:"relative",top:"0px",left:"0px",width:String(W)+'px', height:String(H)+'px',"background-color":self.options.backColor||0});
 
         // resize handler
         handlers[self.id] = function(evt){
-            W = self.el.width(); H = stdMath.ceil(W/self.options.aspectRatio);
+            W = stdMath.round(self.el.width()); H = stdMath.round(W/self.options.aspectRatio);
             holder.css({width:String(W)+'px', height:String(H)+'px'});
             thisimg.css({'background-size':String(W)+'px auto'});
             nextimg.css({'background-size':String(W)+'px auto'});
@@ -958,7 +963,7 @@ function NoFlash( el, options )
         // parse dom data
         self.el.children("div").each(function( ) {
             imgs.push($(this).children("img").filter(":first").css({position:"absolute",width:'100%',height:'auto'}));
-            captions.push($(this).children("span").filter(":first").html());
+            captions.push($(this).children("div").filter(":first").html());
             var thisfx = {};
             thisfx.transition = self.options.transition;
             thisfx.delay = self.options.delay;
@@ -1071,7 +1076,7 @@ function NoFlash( el, options )
     };
 
     self.doTransition = function doTransition( dir ) {
-        var i, dd, fxi, ord, r, c, temp, ordobj, ngroups, d, o, sd, odd, animateoptions;
+        var i, dd, fxi, ord, r, c, temp, ordobj, ngroups, d, o, sd, del, odd, max, evtCarrier = null, animateoptions;
 
         clearTimeout(timer);
 
@@ -1216,8 +1221,18 @@ function NoFlash( el, options )
         d = 1000*fxi.duration/(ngroups-(ngroups-1)*fxi.overlap);
         o = d*fxi.overlap;
         sd = d-o;
+        max = 0;
         odd = false;
         animation_in_progress = true;
+        for(i=0;i<numpiec;i++)
+        {
+            del = ordobj.delays[i]*sd;
+            if ( null==evtCarrier || max<=del )
+            {
+                evtCarrier = i;
+                max = del;
+            }
+        }
         for(i=0;i<numpiec;i++)
         {
             temp = $.extend(true,{}, $.noflashCore.transitions[fxi.transition]);
@@ -1232,7 +1247,7 @@ function NoFlash( el, options )
             translate(temp.animate,p[i]);
 
             animateoptions = {duration:d, easing:fxi.easing};
-            if ( i==p.length-1 )
+            if ( i===evtCarrier )
                 animateoptions.complete = function( ){endTransition();};
 
             if ( fxi.transition=="zoom-fade" )
