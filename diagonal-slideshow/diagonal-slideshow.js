@@ -43,10 +43,12 @@ function debounce( fn, delay )
 
 function DiagonalSlideshow( el, options )
 {
-    var holder, diags, W, H, wl, hl, index, timer = null, i, j, x, y, bx, by, w, margin, margin2, offset;
+    var self = this, holder, diags = null, W, H, wl, hl, index, timer = null, i, j, k, x, y, bx, by, w, side, margin, margin2, offset;
+
+    if ( !(self instanceof DiagonalSlideshow) ) return new DiagonalSlideshow(el, options);
 
     var endTransition = function( ) {
-        if ( null != timer ) clearTimeout(timer);
+        clearTimeout(timer);
         holder.find('.diag-remove').remove();
         index = (index+1) % options.images.length;
         var nextimg = new Image();
@@ -58,18 +60,16 @@ function DiagonalSlideshow( el, options )
     };
 
     var doTransition = function( ind ) {
-        var p = cutimage(options.images[ind], diags, W, H), i, ngroups, d, sd, animateoptions, last, max;
+        var p = cutimage(options.images[ind], diags, W, H), i, ngroups, d, sd, animateoptions;
 
         p = shuffle(p);
         ngroups = p.length;
         d = 1000*options.duration/(ngroups-(ngroups-1)*options.overlap);
         sd = d*(1-options.overlap);
-        //last = null; max = -1;
         for(i=0; i<ngroups; i++)
         {
             p[i].prev().addClass("diag-remove");
             p[i].css({opacity:0});
-            //if ( i*sd >= max ) { last = i; max = i*sd; }
         }
         for(i=0; i<ngroups; i++)
         {
@@ -82,11 +82,37 @@ function DiagonalSlideshow( el, options )
     var autoResize = function( ) {
         W = stdMath.round(el.width()); H = stdMath.round(W/options.aspectRatio);
         holder.css({width:String(W)+'px', height:String(H)+'px'});
+        if ( !diags )
+        {
+            wl = 2*stdMath.ceil(1/options.size)+2;
+            hl = stdMath.ceil(1/(options.size*options.aspectRatio))+1;
+            diags = new Array(wl*hl);
+        }
+        w = stdMath.max(2*W/(wl-2), H/(hl-1)); side = w/sqrt2;
+        margin = w/2; margin2 = margin/2; offset = 0;
+        for (k=0,i=0;i<wl;i++)
+        {
+            for (j=0;j<hl;j++,k++)
+            {
+                x = margin*i-margin; y = w*j-margin+offset;
+                bx = -x+margin2; by = -y+margin2;
+                diags[k] = {
+                    i: i, j: j, x: x, y: y, imgx: bx, imgy: by, side: side, margin: margin, rows: wl, columns: hl,
+                    div: (diags[k] ? diags[k].div : $('<div class="diag" data-coords="'+i+' '+j+'"></div>').appendTo(holder)).css({
+                        left: String(x)+"px",
+                        top: String(y)+"px",
+                        width: String(side)+"px",
+                        height: String(side)+"px"
+                    })
+                };
+            }
+            offset = 0===offset ? -margin : 0;
+        }
     };
 
     options = $.extend({
         aspectRatio: 1.0,
-        side: 200,
+        size: 0.3,
         easing: 'linear',
         duration: 3,
         delay: 5,
@@ -99,29 +125,6 @@ function DiagonalSlideshow( el, options )
 
     $(window).on('resize', debounce(autoResize, 300));
     autoResize();
-
-    w = options.side*sqrt2; wl = 2*stdMath.ceil(W/w)+1; hl = 2*stdMath.ceil(H/w)+1;
-    margin = w/2; margin2 = margin/2; offset = 0;
-
-    diags = [];
-    for (i=0;i<wl;i++)
-    {
-        for (j=0;j<hl;j++)
-        {
-            x = margin*i-margin; y = w*j-margin+offset;
-            bx = -x+margin2; by = -y+margin2;
-            diags.push({
-                i: i, j: j, x: x, y: y, imgx: bx, imgy: by, side: options.side, margin: margin, rows: wl, columns: hl,
-                div: $('<div class="diag" data-coords="'+i+' '+j+'"></div>').css({
-                    left: String(x)+"px",
-                    top: String(y)+"px",
-                    width: String(options.side)+"px",
-                    height: String(options.side)+"px"
-                }).appendTo(holder)
-            });
-        }
-        offset = 0===offset ? -margin : 0;
-    }
 
     // init
     if ( 0 < options.images.length )
@@ -141,7 +144,7 @@ $.fn.diagonalSlideshow = function( options ) {
     $(this).each(function(){
         var $el = $(this);
         if ( !$el.data('diagonal-slideshow') )
-            $el.data('diagonal-slideshow', new DiagonalSlideshow($el, options));
+            $el.data('diagonal-slideshow', new $.DiagonalSlideshow($el, options));
     });
     return this; // chainable
 };
