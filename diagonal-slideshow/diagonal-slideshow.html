@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="diagonal-slideshow.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../jquery/jquery.js"></script>
 <script type="text/javascript" src="diagonal-slideshow.js"></script>
-<link href="diagonal-slideshow.css" rel="stylesheet" type="text/css" />
-<title>Diagonal Slideshow with jQuery and CSS3</title>
+<title>Responsive Diagonal Slideshow with jQuery and CSS3</title>
 </head>
-<body bgcolor="#121212">
-<div id="wrapper">
-</div>
+<body style="background-color:#121212;color:#efefef;">
+<div id="slideshow" style="position:relative;width:100%;max-width:1200px;margin:0 auto;"></div>
 <script type="text/javascript">
-jQuery("#wrapper").diagonalSlideshow({
-width:700,
-height:438,
-strict:true,
-images:['../img/d2.jpg','../img/d3.jpg','../img/d4.jpg']
+jQuery("#slideshow").diagonalSlideshow({
+    aspectRatio: 700/438,
+    images: ['../img/d2.jpg','../img/d3.jpg','../img/d4.jpg']
 });
 </script>
 </body>

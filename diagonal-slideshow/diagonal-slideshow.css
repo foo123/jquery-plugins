@@ -1,31 +1,44 @@
 .diag-container
 {
-padding:0;
+    position:relative;
+    display:block;
+    margin:0;
+    padding:0;
+    border:0;
+    box-sizing:border-box;
+    overflow:hidden !important;
 }
-ul.diag-list {
-list-style-type:none;
-position:relative;
+.diag-container > .diag
+{
+    position:absolute;
+    display:block;
+    margin:0;
+    padding:0;
+    border:0;
+    border:1px solid rgba(255,255,255,0.7);
+    box-sizing:border-box;
+    overflow:hidden !important;
+    transform-origin:center center;
+    transform:rotate(-45deg);
 }
-ul.diag-list li {
-border: 1px solid #aaa;
-overflow: hidden;
-position: absolute;
--moz-transform: rotate(-45deg);  
--o-transform: rotate(-45deg);  
--webkit-transform: rotate(-45deg);  
--ms-transform: rotate(0deg);  
-transform: rotate(-45deg);  
--ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, 			M22=0.70710678,sizingMethod='auto expand')";
-filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678,sizingMethod='auto expand');		
-list-style-type:none;
+.diag > .diag-inside
+{
+    position:absolute;
+    display:block;
+    margin:0;
+    padding:0;
+    border:0;
+    box-sizing:border-box;
+    overflow:hidden !important;
+    transform-origin:center center;
+    transform:rotate(45deg);
+    z-index:10;
+    background-image:none;
+    background-position:0 0;
+    background-repeat:no-repeat;
+    background-size:100% auto;
 }
-
-ul.diag-list li .diag-inside{
-position: absolute;
-cursor: pointer;
--moz-transform: rotate(45deg);  
--o-transform: rotate(45deg);  
--webkit-transform: rotate(45deg);  
--ms-transform: rotate(45deg);  
-transform: rotate(45deg);	
+.diag > .diag-remove
+{
+    z-index:0 !important;
 }
